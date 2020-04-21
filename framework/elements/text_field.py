@@ -2,8 +2,8 @@ from .base_element import BaseElement
 
 
 class TextField(BaseElement):
-    def __init__(self, locator, locator_type=None, name=None):
-        super(TextField, self).__init__(locator, locator_type, name)
+    def __init__(self, name: str, locator: str, loc_type: str):
+        super(TextField, self).__init__(name, locator, loc_type)
 
     def set_value(self, value):
         """ Ввести текст в текстовое поле """

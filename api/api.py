@@ -6,8 +6,8 @@ class Api(object):
     """ Класс предоставляет набор методов для выполнения API запросов
         описанных в документации тестируемого проекта
         """
-
-    def add_subscriber(self, data, url='/api/subscribe'):
+    @staticmethod
+    def add_subscriber(data, url='/api/subscribe'):
         """ Добавить новую подписку
         :param data:   {"email": "...",
                         "name": "...",
@@ -19,14 +19,16 @@ class Api(object):
         result = ApiManager.post(url, body=data)
         return result
 
-    def remove_subscribers(self, url='/api/subscribers'):
+    @staticmethod
+    def remove_subscribers(url='/api/subscribers'):
         """ Очистить список подписок
         :return: объект результата запроса
         """
         result = ApiManager.delete(url)
         return result
 
-    def get_subscribers(self, url='/api/subscribers'):
+    @staticmethod
+    def get_subscribers(url='/api/subscribers'):
         """ Получить список подписок
         :param url: /api/subscribers
         :return: объект результата запроса, в нем данные  в фолрмате:

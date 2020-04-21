@@ -8,15 +8,16 @@ from framework.driver import Driver
 
 @pytest.fixture(scope="session", autouse=True)
 def browser():
-    """ Запустити браузер перед запуском тестов
+    """ Запустить браузер перед запуском тестов
         и закрыть его по окончании тестов
         """
     driver = Driver().connect()
-    yield driver
+    driver.fullscreen_window()
+    yield
     driver.quit()
 
 
-@pytest.fixture(scope='module', autouse=True)
+@pytest.fixture(scope='function', autouse=True)
 def session_data():
     print("General module setup")
     yield

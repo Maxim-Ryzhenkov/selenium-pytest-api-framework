@@ -1,4 +1,5 @@
 import os
+import sys
 
 
 class Config(object):
@@ -12,8 +13,8 @@ class Config(object):
     ]
 
     DRIVER_PATH = {
-        'Chrome': os.path.join(ROOT_DIR, 'chromedriver'),
-        'Firefox': os.path.join(ROOT_DIR, 'geckodriver'),
+        'Chrome': os.path.join(ROOT_DIR, 'drivers', 'chromedriver'),
+        'Firefox': os.path.join(ROOT_DIR, 'drivers', 'geckodriver'),
     }
 
-    DRIVER = 'Firefox'
+    DRIVER = 'Chrome'
