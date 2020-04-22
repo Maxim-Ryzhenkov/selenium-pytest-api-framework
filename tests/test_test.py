@@ -17,7 +17,6 @@ test_incorrect_data = [(item['email'], item['name'], item['time'], item['comment
                        for item in test_data_json['test_data']]
 
 
-@pytest.mark.skip
 @pytest.mark.smoke
 @pytest.mark.parametrize('email, name, time, comment', test_data)
 def test_email(email, name, time, comment):
