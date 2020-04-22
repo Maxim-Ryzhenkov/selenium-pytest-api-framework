@@ -1,5 +1,5 @@
 {
-  "name_test": [
+  "test_data": [
     {
       "email": "hogvarts@school.com",
       "name": "Harry Potter",
@@ -20,7 +20,7 @@
     },
     {
       "email": "hogvarts@school.com",
-      "name": "           ",
+      "name": "",
       "time": "1d",
       "comment": "Пробелы вместо имени"
     },
@@ -29,9 +29,7 @@
       "name": "@#$%^&*",
       "time": "1d",
       "comment": "@#$%^&*  Вместо имени и в комментах"
-    }],
-
-  "email_test": [
+    },
     {
       "email": "hogvarts@school.com",
       "name": "Harry Potter",
@@ -49,57 +47,53 @@
       "name": "Harry Potter",
       "time": "1d",
       "comment": "Почта без домена"
-    }],
-
-  "time_test": [
-    {
+    },
+      {
       "email": "hogvarts@school.com",
       "name": "Harry Potter",
       "time": "1d",
-      "comment": "All latin letters"
+      "comment": "Подписка на 1 день"
     },
     {
       "email": "hogvarts@school.com",
       "name": "Harry Potter",
       "time": "1h",
-      "comment": "All latin letters"
+      "comment": "Подписка на 1 час"
     },
         {
       "email": "hogvarts@school.com",
       "name": "Harry Potter",
       "time": "1m",
-      "comment": "All latin letters"
+      "comment": "Подписка на 1 минуту"
     },
         {
       "email": "hogvarts@school.com",
       "name": "Harry Potter",
       "time": "50s",
-      "comment": "All latin letters"
+      "comment": "Подписка на 50 секунд"
     },
         {
       "email": "hogvarts@school.com",
       "name": "Harry Potter",
       "time": "-1d",
-      "comment": "All latin letters"
+      "comment": "Подписка на -1 день"
     },    {
       "email": "hogvarts@school.com",
       "name": "Harry Potter",
       "time": "0d",
-      "comment": "All latin letters"
+      "comment": "Подписка на 0 дней"
     },
         {
       "email": "hogvarts@school.com",
       "name": "Harry Potter",
       "time": "",
-      "comment": "All latin letters"
+      "comment": "Пробел в поле Время"
     },
-        {
+    {
       "email": "hogvarts@school.com",
       "name": "Harry Potter",
-      "time": "1d",
-      "comment": "All latin letters"
+      "time": "1f",
+      "comment": "F - в параметре времени"
     }
-  ],
-
   ]
 }

@@ -16,20 +16,22 @@ class BaseElement(object):
         self.locator_type = loc_type
         self.name = name
         self.driver = Driver().connect()
+        self.obj = None
 
     def click(self):
         """ Клик мышью на элементе """
-        self.find_element().click()
+        self.find_element()
+        self.obj.click()
 
     def find_element(self, timeout=5):
         """ Найти и вернуть объект UI элемента """
-        return WebDriverWait(self.driver, timeout=timeout).until(
+        self.obj = WebDriverWait(self.driver, timeout=timeout).until(
             EC.presence_of_element_located((self.locator_type, self.locator)),
             message=f"Can't find '{self.name}' element by locator '{self.locator}'")
 
     def find_elements(self, timeout=5):
         """ Найти и вернуть список объектов """
-        return WebDriverWait(self.driver, timeout).until(
+        self.obj = WebDriverWait(self.driver, timeout).until(
             EC.presence_of_all_elements_located((self.locator_type, self.locator)),
             message=f"Can't find elements by locator {self.locator}")
 
@@ -52,8 +54,9 @@ class BaseElement(object):
         raise NotImplementedError
 
     def get_children_elements_list(self):
+        self.find_element()
         try:
-            children_list = self.find_elements(timeout=1)
+            children_list = self.obj.find_elements(timeout=1)
         except (LookupError, RuntimeError):
             return None
         return children_list

@@ -1,0 +1,34 @@
+{
+  "test_data": [
+    {
+      "email": "hogvarts_school.com",
+      "name": "Harry Potter",
+      "time": "1d",
+      "comment": "Почта без собаки"
+    },
+    {
+      "email": "hogvarts@school",
+      "name": "Harry Potter",
+      "time": "1d",
+      "comment": "Почта без домена"
+    },
+    {
+      "email": "",
+      "name": "Harry Potter",
+      "time": "1d",
+      "comment": "Нету почты"
+    },
+    {
+      "email": "hogvarts@school.com",
+      "name": "Harry Potter",
+      "time": "",
+      "comment": "Нет времени"
+    },
+    {
+      "email": "hogvarts@school.com",
+      "name": "Harry Potter",
+      "time": "фыавфывафыва",
+      "comment": "Текст в поле Время"
+    }
+  ]
+}

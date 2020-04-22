@@ -1,4 +1,6 @@
 import requests
+
+from config import Config
 from framework.api_manager import ApiManager
 
 
@@ -6,37 +8,51 @@ class Api(object):
     """ Класс предоставляет набор методов для выполнения API запросов
         описанных в документации тестируемого проекта
         """
+
     @staticmethod
-    def add_subscriber(data, url='/api/subscribe'):
+    def add_subscription(data, url='/subscriptions'):
         """ Добавить новую подписку
         :param data:   {"email": "...",
                         "name": "...",
                         "time": "...",
                         "comment": "..."}
         :param url: '/api/subscribe'
-        :return: объект результата запроса
+        :returns: response из которого можно извлечь int: status_code, int: id подписки
         """
-        result = ApiManager.post(url, body=data)
-        return result
+        url = Config.BASE_URL + url
+        response = ApiManager.post(url, body=data)
+        status_code = response.status_code
+        json_data = response.json()
+        return status_code, json_data
 
     @staticmethod
-    def remove_subscribers(url='/api/subscribers'):
-        """ Очистить список подписок
-        :return: объект результата запроса
+    def clear_subscriptions(url='/subscriptions'):
+        """ Очистить список подписок.
+            Из объекта ответа извлекается код ответа и
+            словарь {'removed': (int число удаленных записей)}
+        :returns: response из которого можно извлечь int: status_code, int: removed
         """
-        result = ApiManager.delete(url)
-        return result
+        url = Config.BASE_URL + url
+        response = ApiManager.delete(url)
+        status_code = response.status_code
+        json_data = response.json()
+        return status_code, json_data
 
     @staticmethod
-    def get_subscribers(url='/api/subscribers'):
-        """ Получить список подписок
+    def get_subscriptions(url='/subscriptions'):
+        """ Получить список подписок в виде списка словарей
         :param url: /api/subscribers
-        :return: объект результата запроса, в нем данные  в фолрмате:
+        :return: объект результата запроса, в нем int:status_code и
+                данные в фолрмате:
                  [{ "email": "...",
                     "name": "...",
                     "comment": "...",
                     "created_at": "...",
-                    "expired_at": "..." }, ... ]
+                    "expired_at": "..."
+                    "id: ..."}, ... ]
         """
-        result = requests.get(url)
-        return result
+        url = Config.BASE_URL + url
+        response = requests.get(url)
+        status_code = response.status_code
+        json_data = response.json()
+        return status_code, json_data

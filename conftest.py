@@ -1,9 +1,11 @@
-import time
+
 import pytest
 import logging
 from _pytest.runner import CallInfo
 
 from framework.driver import Driver
+from pages.ui_page import UiPage
+from api.api import Api
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -17,25 +19,35 @@ def browser():
     driver.quit()
 
 
-@pytest.fixture(scope='function', autouse=True)
-def session_data():
-    print("General module setup")
+@pytest.fixture(scope='class', autouse=False)
+def finally_clear_subscriptions():
+    pass
     yield
-    print("General module teardown")
+    #    Проверим, что за бардак там создаётся если приходят некорректные данные
+    status_code, json_data = Api.get_subscriptions()
+    assert status_code == 200
+    print(str(json_data))
+    logging.info(str(json_data))
+    status_code, data = Api.clear_subscriptions()
+    if status_code == 200:
+        logging.info(f'База подписок ощищена! Удалено {data["removed"]} записей.')
+    else:
+        raise RuntimeError('Не удалось очистить базу подписок!')
 
 
-@pytest.fixture(scope='class', autouse=True)
+@pytest.fixture(scope='class', autouse=False)
 def suite_data():
     print("General suite setup")
     yield
     print("General suite teardown")
 
 
-@pytest.fixture(scope='function')
-def case_data():
-    print("General case setup")
-    yield time.time()  # Может что-то передавать в кейс или не передавать
-    print("General case teardown")
+@pytest.fixture(scope='module', autouse=True)
+def open_ui_page():
+    ui_page = UiPage()
+    ui_page.open()
+    yield
+    pass
 
 
 def pytest_exception_interact(node, call: CallInfo, report):
