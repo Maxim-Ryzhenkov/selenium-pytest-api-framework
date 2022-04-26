@@ -1,5 +1,5 @@
-# UI and API web framework (selenium + pytest)
-An example framework in python. The framework uses selenium and pytest. Tested UI and API
+# Web framework for UI and API testing (selenium + pytest)
+An example of a framework based on Selenium and pytest. Suitable for functional testing of web applications through UI and API.
 В фреймворке:
 - реализован page object pattern как BasePage класс фреймворка от которого наследуются классы страниц тестируемого сервиса
 - web-driver вынесен в отдельный класс и реализован как синглтон с использованием метакласса
